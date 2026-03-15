@@ -81,8 +81,8 @@ mini_movie_dict = {
     'Surcharge': surcharge_list
 }
 
-# surcharge is 15% - use this to apply surcharge to credit payments
-surcharge = 0.15
+# surcharge is 5% - use this to apply surcharge to credit payments
+surcharge = 0.05
 
 make_statement("Mini Movie Fundraiser","$")
 want_instructions = string_checker("do you want to see the instructions? ",)
@@ -112,6 +112,7 @@ while tickets_sold < max_tickets:
         add_surcharge = ticket_price * surcharge
     else:
         add_surcharge = 0
+
     names_list.append(name)
     ticket_list.append(ticket_price)
     surcharge_list.append(add_surcharge)
@@ -136,7 +137,7 @@ add_dollars = ['Ticket Price', 'Surcharge', 'Total', 'Profit']
 for var_item in add_dollars:
     mini_movie_frame[var_item] = mini_movie_frame[var_item].apply(currency)
 #prints stats
-print(mini_movie_frame)
+
 print(mini_movie_frame.to_string(index=False))
 print()
 print(f"total paid: ${total_paid:.2f}")
