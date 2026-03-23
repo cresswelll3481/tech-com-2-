@@ -1,0 +1,30 @@
+=== mini movie fundraiser ===
+
+
+--- ticket details ---
+Name Ticket Price Surcharge Total Profit
+   s        $7.50     $0.00 $7.50  $2.50
+
+
+
+total paid: $7.50
+total profit: $2.50
+
+
+---  raffle winner ---
+The lucky winner is s.Their ticket worth $$7.50 is free!
+
+
+### adjusted sales and profit ###
+    we have given away a ticket worth $7.50 which means
+sales have decreased by $7.50 
+and our profit decreased by 2.5    
+
+
+
+Total paid is now $0.00
+
+Total profit is now $0.00
+
+
+--- you have sold 1 out of 5 tickets ---
