@@ -141,8 +141,7 @@ winner = random.choice(names_list)
 winner_index = names_list.index(winner)
 #winnings
 total_won = mini_movie_frame.at[winner_index, "Total"]
-winner_string = (f"The lucky winner is {winner}."
-                 f"Their ticket worth ${total_won} is free!")
+winner_string = f"The lucky winner is {winner} Their ticket worth ${total_won} is free!"
 
 final_total_paid = f"\nTotal paid is now ${total_paid - ticket_won:.2f}"
 final_total_profit = f"\nTotal profit is now ${total_profit - profit_won:.2f}"
@@ -160,8 +159,8 @@ ticket_headeing = make_statement("ticket details", "-")
 raffle_headding = make_statement(" raffle winner", "-")
 adjusted_sales_heading = make_statement("adjusted sales and profit", "#")
 adjusted_explantion = make_statement(f"we have given away a ticket worth {total_won} which means"
-                                     f"\nsales have decreased by {total_won} "
-                                     f"\nand our profit decreased by {profit_won}", " ")
+                                     f"\n sales have decreased by {total_won} "
+                                     f"\n and our profit decreased by {profit_won:.2f}", "")
 
 # list to output to user / write to file
 to_write = [heading_string, "\n",
