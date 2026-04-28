@@ -1,0 +1,16 @@
+===  Fund Raising Calculator (test, 29/04/2026) ===
+Quantity being made: 10
+
+
+--- variable expenses ---
+     Item  Amount $ / Item    Cost
+0  test a      10    $1.50  $15.00
+Variable Expenses Subtotal: $15.00
+
+
+--- fixed expenses ---
+      Item  Amount $ / Item    Cost
+0  test b        1   $12.02  $12.02
+Fixed Expenses Subtotal: 12.02
+!!! Total Expenses !!!
+Total Expenses: $27.02
