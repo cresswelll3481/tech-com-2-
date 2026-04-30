@@ -1,0 +1,26 @@
+===  Fund Raising Calculator (cups, 30/04/2026) ===
+Quantity being made: 100
+
+
+--- variable expenses ---
+    Item  Amount $ / Item     Cost
+0   clay      50    $2.75  $137.50
+1  paint     100    $0.75   $75.00
+Variable Expenses Subtotal: $212.50
+
+
+--- fixed expenses ---
+   Item  Amount $ / Item     Cost
+0  rent       1  $250.75  $250.75
+Fixed Expenses Subtotal: 250.75
+
+
+||| Selling price calculations |||
+Total Expenses: $463.25
+Profit Goal: $115.81
+
+
+Minimum Selling Price: $5.79
+
+
+*** Suggested Selling Price: $6.00 ***

@@ -1,11 +1,10 @@
 import pandas
+import math
 from tabulate import tabulate
 from datetime import date
 
-
 def make_statement(statement, decoration, lines=1):
     return f"{decoration * 3} {statement} {decoration * 3}"
-
 
 def yes_no(question):
     while True:
@@ -20,23 +19,14 @@ def yes_no(question):
         else:
             print("Please enter yes or no.\n")
 
-
 def instructions():
     print(make_statement("Instructions", "^"))
     print('''
-For each ticket holder enter:
--Name
--Age
--Payment (cash or credit)
-
-This program will record the ticket sale and calculate the ticket cost
-
-once you have either sold all of the tickets or entered all of the 
-exit code "xxx" the program will display the ticket sales info and write it to a text file 
-
-it will also choose one lucky ticket holder who wins the draw their ticket is free
+enter your product name
+enter the variable expenses
+enter the fixed expenses if you have them
+enter the profit goal
     ''')
-
 
 def not_blank(question):
     while True:
@@ -46,7 +36,6 @@ def not_blank(question):
             return response
 
         print("Sorry, this can't be blank. please try again. \n")
-
 
 def num_check(question, num_type="float", exit_code=None):
     if num_type == "float":
@@ -68,7 +57,6 @@ def num_check(question, num_type="float", exit_code=None):
                 print(error)
         except ValueError:
             print(error)
-
 
 def get_expenses(exp_type, how_many=1):
     all_items = []
@@ -117,13 +105,61 @@ def get_expenses(exp_type, how_many=1):
 
     return expenses_frame, subtotal, expense_string
 
-
 def currency(x):
     return "${:.2f}".format(x)
 
+def profit_goals(total_costs):
+    error = "please enter a valid profit goal"
+    valid = False
+    while True:
+        response = input("what is your profit goal (eg $500 or 50%): ")
+        if response[0] == "$":
+            profit_type = "$"
+            amount = response[1:]
+        elif response[-1:] == "%":
+            profit_type = "%"
+            amount =   response[:-1]
+        else:
+            profit_type = "unknown"
+            amount = response
+        try:
+            amount = float(amount)
+            if amount <= 0:
+                print(error)
+                continue
+                return None
+                return None
+        except ValueError:
+            print(error)
+            continue
+            return None
+            return None
+        if profit_type == "unknown" and amount >= 100:
+            dollar_type = yes_no(f"Do you mean ${amount:.2f}. ie {amount:.2f} dollars?, y / n: ")
+            if dollar_type == "yes":
+                profit_type = "$"
+            else:
+                profit_type = "%"
+        elif profit_type == "unknown" and amount < 100:
+            precent_type = yes_no(f"Do you mean {amount:.2f}%, y / n: ")
+            if precent_type == "yes":
+                profit_type = "%"
+            else:
+                profit_type = "$"
+        if profit_type == "$":
+            return amount
+        else:
+            goal = (amount / 100) * total_costs
+            return goal
+
+def rounding_up(amount, round_val):
+    return int(math.ceil(amount / round_val) * round_val)
+
+
 
 #main
-print(make_statement("Fund raising calculator", "#"))
+spaces_string = make_statement("Fund raising calculator", "#")
+underscores_string = spaces_string.replace(" ", "_")
 print()
 want_instructions = yes_no("do you want to see the instructions? ")
 print()
@@ -165,8 +201,13 @@ print(f"fixed subtotal: ${fixed_subtotal:.2f}")
 print()
 print("Getting total expenses... ")
 total_expenses = variable_subtotal + fixed_subtotal
-print()
 print(f"Total Expenses: ${total_expenses:.2f}")
+
+target = profit_goals(total_expenses)
+sales_target = total_expenses + target
+selling_price = (total_expenses + target) / quantity_made
+round_to = num_check("Round to: ", 'integer')
+suggested_price = rounding_up(selling_price, round_to)
 
 today = date.today()
 day = today.strftime("%d")
@@ -185,6 +226,14 @@ if has_fixed == "yes":
 else:
     fixed_heading_string = make_statement("You have no Fixed Expenses", "-")
     fixed_subtotal_string = "Fixed Expenses Subtotal: $0.00"
+
+selling_price_heading = make_statement("Selling price calculations", "|")
+profit_goals_string = f"Profit Goal: ${target:.2f}"
+sales_target_string = f"\nTotal Sales Needed: ${sales_target:.2f}"
+minimum_price_string = f"Minimum Selling Price: ${selling_price:.2f}"
+suggested_price_string = make_statement(f"Suggested Selling Price: "
+                                        f"${suggested_price:.2f}", "*")
+
 fixed_pandas_string = f"{fixed_pandas}"
 variable_panda_string = f"{variable_panda}"
 total_expenses_heading = make_statement("Total Expenses", "!")
@@ -193,7 +242,8 @@ total_expenses_string = f"Total Expenses: ${total_expenses:.2f}"
 to_write = [main_heading, quantity_string,
             "\n", variable_string_heading, variable_panda_string, variable_subtotal_heading,
             "\n", fixed_heading_string, fixed_pandas_string, fixed_subtotal_string,
-            "\n", total_expenses_heading, total_expenses_string]
+            "\n", selling_price_heading, total_expenses_string, profit_goals_string,
+            "\n", minimum_price_string, suggested_price_string]
 print()
 for item in to_write:
     print(item)

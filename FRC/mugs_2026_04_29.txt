@@ -1,0 +1,18 @@
+===  Fund Raising Calculator (mugs, 29/04/2026) ===
+Quantity being made: 100
+
+
+--- variable expenses ---
+       Item  Amount $ / Item     Cost
+0      mugs     100    $1.00  $100.00
+1  printing      50    $1.00   $50.00
+Variable Expenses Subtotal: $150.00
+
+
+--- You have no Fixed Expenses ---
+
+Fixed Expenses Subtotal: $0.00
+
+
+!!! Total Expenses !!!
+Total Expenses: $150.00
