@@ -1,0 +1,35 @@
+===  Fund Raising Calculator (mugs, 05/05/2026) ===
+
+
+Quantity being made: 100
+
+
+--- variable expenses ---
++----------+----------+------------+---------+
+| Item     |   Amount | $ / Item   | Cost    |
+|----------+----------+------------+---------|
+| mugs     |      100 | $1.00      | $100.00 |
+| printing |      100 | $0.50      | $50.00  |
++----------+----------+------------+---------+
+Variable Expenses Subtotal: $150.00
+
+
+--- fixed expenses ---
++--------+---------+
+| Item   | Cost    |
+|--------+---------|
+| rent   | $100.00 |
+| ads    | $50.00  |
++--------+---------+
+Fixed Expenses Subtotal: 150.00
+
+
+||| Selling price calculations |||
+
+
+Total Expenses: $300.00
+Profit Goal: $500.00
+
+
+Minimum Selling Price: $8.00
+ Suggested Selling Price: $8.00 

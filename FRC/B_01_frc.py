@@ -110,9 +110,8 @@ def currency(x):
 
 def profit_goals(total_costs):
     error = "please enter a valid profit goal"
-    valid = False
     while True:
-        response = input("what is your profit goal (eg $500 or 50%): ")
+        response = not_blank("what is your profit goal (eg $500 or 50%): ")
         if response[0] == "$":
             profit_type = "$"
             amount = response[1:]
@@ -126,14 +125,15 @@ def profit_goals(total_costs):
             amount = float(amount)
             if amount <= 0:
                 print(error)
+                return None
                 continue
-                return None
-                return None
+
+
         except ValueError:
             print(error)
+            return None
             continue
-            return None
-            return None
+
         if profit_type == "unknown" and amount >= 100:
             dollar_type = yes_no(f"Do you mean ${amount:.2f}. ie {amount:.2f} dollars?, y / n: ")
             if dollar_type == "yes":
@@ -175,6 +175,7 @@ variable_expenses = get_expenses("variable", quantity_made)
 print()
 
 variable_panda, variable_subtotal, variable_string = variable_expenses
+
 print("Getting fixed costs... ")
 
 has_fixed = yes_no("Do you have the fixed costs? ")
@@ -232,21 +233,24 @@ profit_goals_string = f"Profit Goal: ${target:.2f}"
 sales_target_string = f"\nTotal Sales Needed: ${sales_target:.2f}"
 minimum_price_string = f"Minimum Selling Price: ${selling_price:.2f}"
 suggested_price_string = make_statement(f"Suggested Selling Price: "
-                                        f"${suggested_price:.2f}", "*")
+                                        f"${suggested_price:.2f}", "")
 
-fixed_pandas_string = f"{fixed_pandas}"
-variable_panda_string = f"{variable_panda}"
+# fixed_pandas_string = f"{fixed_pandas}"
+# variable_panda_string = f"{variable_panda}"
 total_expenses_heading = make_statement("Total Expenses", "!")
 total_expenses_string = f"Total Expenses: ${total_expenses:.2f}"
+
 #writing to file
-to_write = [main_heading, quantity_string,
-            "\n", variable_string_heading, variable_panda_string, variable_subtotal_heading,
-            "\n", fixed_heading_string, fixed_pandas_string, fixed_subtotal_string,
-            "\n", selling_price_heading, total_expenses_string, profit_goals_string,
+to_write = [main_heading, "\n", quantity_string,
+            "\n", variable_string_heading, variable_string, variable_subtotal_heading,
+            "\n", fixed_heading_string, fixed_string, fixed_subtotal_string,
+            "\n", selling_price_heading, "\n", total_expenses_string, profit_goals_string,
             "\n", minimum_price_string, suggested_price_string]
+
 print()
 for item in to_write:
     print(item)
+
 file_name = f"{product_name}_{year}_{month}_{day}"
 write_to = "{}.txt".format(file_name)
 text_file = open(write_to, "w+")
